@@ -1,0 +1,28 @@
+<template name="thumbnailWidget">
+     <div id="meta-item-"  class="form-group">
+         <h2>
+              {{property.name}}
+         </h2>
+         <div>
+            {{#with currentUpload}}
+                Uploading <b>{{file.name}}</b>:
+                <span id="progress">{{progress.get}}%</span>
+            {{else}}
+                    {{#if showValue}} 
+                    
+                    {{else}}
+                    <span class="glyphicon glyphicon-picture show-edit" ></span>
+                    <span>{{_ 'collection.header-collection.change-image'}}</span>
+                   <input type="file" class="form-control js-save-thumbnail" accept="image/*">
+                    {{/if}}
+            {{/with}}
+            {{#if Template.subscriptionsReady}}
+                {{#with hasThumbnail}}
+                       <img src="{{fileURL getThumbnail }}"  alt="{{getThumbnail.name}}" class="attachment-thumbnail wp-post-image img-responsive" />
+                {{else}}
+                <div class="attachment-thumbnail wp-post-image tainacan-thumbless"></div>
+                {{/with}}
+            {{/if}}
+         </div>
+     </div>     
+</template>  

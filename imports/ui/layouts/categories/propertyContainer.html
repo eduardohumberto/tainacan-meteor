@@ -1,0 +1,66 @@
+<template name="propertyContainer">
+    {{#if Template.subscriptionsReady}}
+    <div id="configuration">
+        <div class="categories_menu col-md-12 no-padding"  id="properties_tabs">
+            <div class="col-md-12 ui-widget-content metadata-actions" style="padding-right: 0;">
+                <div class="add-property-btn btn-group col-md-12">
+                    <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" >
+                        <span style="color:white;">{{_ 'property.button-property'}} <span style="color:white;" class="caret"></span></span>
+                    </button>
+                    <ul class="dropdown-menu add-property-dropdown">
+                          <li>
+                             <!--a  data-toggle="modal" data-target="#meta-<?php echo $type ?>"-->
+                             <a class="add-new-property-text" >
+                                 <span class="glyphicon glyphicon-pencil"></span>
+                                  {{_ 'property.text'}}
+                              </a>
+                          </li>
+                          <li>
+                             <!--a  data-toggle="modal" data-target="#meta-<?php echo $type ?>"-->
+                             <a >
+                                 <span class="glyphicon glyphicon-pencil"></span>
+                                  {{_ 'property.text-area'}}
+                              </a>
+                          </li>
+                  </ul>
+              </div>
+              <!-- Abas para a Listagem dos metadados -->
+              {{#if $.Session.get 'newPropertyOld'}}
+                <div style="background: white;"> 
+                  {{> Template.dynamic template=getTemplate}}
+                </div>  
+              {{else}}
+                <div id="tab-content-metadata" class="tab-content" style="background: white">
+                    <div id="tab_default" class="ui-widget ui-helper-clearfix col-md-12 tab-pane fade in active" style="background: white">
+                        <ul id="metadata-container-default" class="gallery ui-helper-reset ui-helper-clearfix connectedSortable metadata-container">
+                           {{#each property in listProperties}}
+                                {{>liProperty property}}
+                           {{else}}
+                             <li>
+                                <center>
+                                    <span class="glyphicon glyphicon-alert"></span> &nbsp;{{_ 'property.no-properties-added'}}
+                                </center>
+                            </li>     
+                           {{/each}}
+                        </ul>
+                        <div id="loader_metadados_page" style="display: none;font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: normal; font-family: Arial;">
+                            <center>
+                                <img src="'/libraries/images/catalogo_loader_725.gif' ?>">
+                                <h4>{{_ 'property.loading'}}</h4>
+                           </center>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+        <div class="modal fade" id="modal-property" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                     {{> Template.dynamic template=getTemplate}}
+                </div>
+            </div>
+        </div>   
+    </div>
+    {{/if}}
+</template>

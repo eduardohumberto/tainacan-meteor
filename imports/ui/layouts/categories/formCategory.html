@@ -1,0 +1,47 @@
+<template name="formCategory">
+    {{#if Template.subscriptionsReady}}
+     <form id="submit_form_category">
+        <div class="create_form-group">
+            <label for="category_name">{{_ 'formCategory.field-label.name'}}</label>
+            <input value="{{ getParam 'name'}}" maxlength="50" type="text" class="form-control" id="category_name" name="category_name" required="required" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="category_parent_name">{{_ 'formCategory.field-label.parent'}}</label>
+            <input disabled="disabled" placeholder="{{_ 'formCategory.field-label.label-parent'}}" type="text" class="form-control" id="category_parent_name"  name="category_parent_name" >
+            <input type="hidden" value="{{ getParam 'parent'}}"  id="category_parent_id"  name="category_parent_id"  >
+        </div>
+        <div class="form-group">
+             <label for="category_parent_name">{{_ 'formCategory.field-label.description'}}&nbsp;</label>
+            <textarea class="form-control" id="category_description"
+                      name="socialdb_event_term_description" >{{ getParam 'description'}}</textarea>    
+        </div>
+        <div class="form-group">
+            <label for="category_permission">{{_ 'formCategory.field-label.privacity'}}</label>
+            <select class="form-control" id="category_permission"  style="width: 350px;height: auto;"  name="category_permission" >
+                <option {{selectedPermission 'private'}} value="private">{{_ 'formCategory.field-label.private'}}</option>
+                <option {{selectedPermission 'public'}} value="public">{{_ 'formCategory.field-label.public'}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="chosen-selected-user">{{_ 'formCategory.field-label.moderators'}}</label>
+            <input type="text" id="chosen-selected-user" style="width: 50%;" class="chosen-selected form-control" />
+            <select class="chosen-selected2 form-control" style="width: 50%;height: auto;" multiple name="category_moderators[]" id="chosen-selected2-user"  >
+            </select>
+        </div>
+        {{#if isEdit}}
+        <a style="cursor: pointer;" id="js-show-category-property">{{_ 'formCategory.field-label.properties'}}
+        	<span class="glyphicon glyphicon-triangle-bottom"></span>
+        </a>
+        <div class="form-group">
+            <div id="js-category-properties" style="display: none;margin-left: -15px;margin-top: 15px;">
+                {{>propertyContainer}}
+            </div>
+        </div>    
+        {{/if}}
+        <br><br>
+        <button type="submit" class="btn btn-success pull-right js-save-form-category">{{_ 'submit'}}</button>
+        <a href='/administracao/categorias/' class="btn btn-default pull-left">{{_ 'cancel'}}</a>
+    </form>
+    {{/if}}
+</template>

@@ -1,0 +1,17 @@
+<template name="textInput">
+    {{#if Template.subscriptionsReady}}
+            <div class="row" style="padding-bottom: 10px;margin-bottom: 10px;">
+                <div class="col-md-11">
+                    {{#if showValue}}
+                        {{getValue}}
+                    {{else}}
+                    <input  type="text"
+                            class="form-control js-save-property"
+                            value="{{getValue}}"
+                            name="property-field-{{property._id}}"
+                            >
+                    {{/if}}
+                </div>
+            </div>
+    {{/if}}
+</template>

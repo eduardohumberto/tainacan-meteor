@@ -1,0 +1,46 @@
+<template name="toolsPage">
+
+    <div id="configuration" style="margin-top: 50px;" class="row col-md-12">
+
+        <div id="toolsTitle" class="row" > 
+          <div class="col-md-12 tainacan-topo-categoria">
+              <h3>{{_ 'Tools.title'}}
+                  <button  class="btn btn-default pull-right">{{_ 'Categories.back'}}</button>
+              </h3> 
+              <hr>  
+          </div>
+        </div>
+        <div >
+            <div class="col-md-12 form-tools">
+                <form class="form-horizontal"  id="submit_tools">   
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-sm-2 control-label">{{_ 'Tools.collections'}}</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="collections">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{_ 'Tools.metadataText-per-collection'}}</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="metadataText">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{_ 'Tools.items-per-collection'}}</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="items">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'close'}}</button>
+                        <button type="submit" class="btn btn-primary">{{_ 'submit'}}</button>
+                    </div>
+                </form>  
+                <button type="button" id="clearAll" class="btn btn-primary">{{_ 'Tools.clearRepository'}}</button>
+            </div>
+            <center><div style="display: none;" class="loader"></div></center>   
+        </div>  
+    </div>
+</template>
+ 

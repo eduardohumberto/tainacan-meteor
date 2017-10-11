@@ -1,0 +1,52 @@
+<template name="modeCards">  
+    <li class="col-md-6 cards-view-container top-div" >
+        <!-- TAINACAN: coloca a class row DO ITEM, sao cinco colunas possiveis todas elas podendo ser escondidas pelo o usuario, mas seu tamanho eh fixo col-md-2  -->
+        <div class="item-colecao toggleSelect">
+            
+            <div class="droppableClassifications">
+
+                <div class="item-info">
+                <div class="col-md-4 colFoto no-padding">
+                    <a href="/{{getURLItem slug}}">
+                        {{#if Template.subscriptionsReady}}
+                            {{#with hasThumbnail}}
+                                   <img src="{{fileURL getThumbnail }}"  alt="{{getThumbnail.name}}" class="attachment-thumbnail wp-post-image img-responsive" />
+                            {{else}}
+                                <div style="height:150px;width: 80%;" class="attachment-thumbnail wp-post-image tainacan-thumbless">{{getTitleFirstLetter title}}</div>
+                            {{/with}}
+                        {{/if}}
+                    </a>
+                </div>
+
+                <div class="col-md-8 flex-box item-meta-box" style="flex-direction:column;">
+                    <div class="item-meta col-md-12 no-padding">
+                         <h4 class="item-display-title">
+                            <a href="/{{getURLItem slug}}">
+                                {{title}}
+                            </a>
+                        </h4>
+
+                        <div class="item-description"> {{description}} </div>
+                        <div class='item-desc-hidden-full' style="display: none"> {{description}}</div>
+
+                        <div class="row author-created">
+                            <div class="col-md-6 author">
+                                <div class="item-author"><strong>{{_ 'singleListCollections.created-by'}}</strong>{{getOwner}}</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item-creation">{{getDate createdAt}}</div>
+                            </div>
+                        </div>
+                        <div class="editing-item">
+                            <div class="new-item-actions">
+                                {{>itemActions}}  
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        </div>
+    </li>
+</template>

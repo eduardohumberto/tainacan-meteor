@@ -1,0 +1,56 @@
+<template name="Auth_page">
+  <div class="col-md-12" style="background: #E8E8E8; padding-top: 50px; margin-top: -20px; padding-bottom: 50px;">
+      <div class="col-md-5 center container" style="background: white; margin-bottom: 15px; border: 2px solid #d8d6d6; padding: 25px">
+        {{> atForm}}
+    </div>
+  </div>
+</template>
+
+
+<template name="override-atPwdFormBtn">
+  <button type="submit" class="btn btn-primary">
+    {{buttonText}}
+  </button>
+</template>
+
+<template name="override-atTextInput">
+  <div style="margin-top:15px;margin-bottom:15px;" class="input {{#if isValidating}}validating{{/if}} {{#if hasError}}error{{/if}} {{#if hasSuccess}}has-success{{/if}} {{#if feedback}}has-feedback{{/if}}">
+    <input class="form-control" type="{{type}}" id="at-field-{{_id}}" name="at-field-{{_id}}" placeholder="{{placeholder}}" autocapitalize="none" autocorrect="off">
+    {{#if hasIcon}}
+        <span class="{{iconClass}}"></span>
+    {{/if}}
+    {{#if hasError}}
+      <span>{{errorText}}</span>
+    {{/if}}
+  </div>
+</template>
+
+<template name="override-atTitle">
+  <h1 class="title-auth">{{title}}</h1>
+  <p class="subtitle-auth">{{_ 'useraccounts.atTitle.subtitle'}}</p>
+</template>
+
+<template name="override-atError">
+  <div class="list-errors">
+    {{#each error}}
+      <div class="list-item">{{errorText}}</div>
+    {{/each}}
+  </div>
+</template>
+
+<template name="override-atPwdForm">
+  <div class="at-pwd-form">
+    <form role="form" id="at-pwd-form" class="{{disabled}}" novalidate action="#" method="POST">
+      {{#each fields}}
+        {{> atInput}}
+      {{/each}}
+      {{#if showReCaptcha}}
+        {{> atReCaptcha}}
+      {{/if}}
+      {{> atPwdFormBtn}}
+      {{#if showForgotPasswordLink}}
+        {{> atPwdLink}}
+      {{/if}}
+    </form>
+  </div>
+</template>

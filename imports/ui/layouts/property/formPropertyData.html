@@ -1,0 +1,67 @@
+<template name="formPropertyData">
+    <div class="modal-header" style="border-bottom: none;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel" style="display: inline-block">
+            {{_ 'property.add-property'}}
+        </h4>
+    </div>
+    <div class="modal-body">
+          <form id="submit_form_property_data" name="submit_form_property_data" class="form_property_data">
+             <div id="data-title-name" style="margin: 15px;">
+                 <div class="metadata-common-fields">
+                     <div class="create_form-group">
+                         <label for="property_data_name">{{_ 'property.property-name-label'}}</label>
+                         <input type="text" class="form-control" id="property_data_name" name="property_data_name" placeholder="{{_ 'property.property-name-label'}}">
+                     </div> <br />
+                 </div>
+                 <!--a style="cursor: pointer;" onclick="toggle_advanced_configuration('#data-advanced-configuration')">
+                     {{_ 'property.property-name-label'}} <span class="glyphicon glyphicon-triangle-bottom"></span>
+                 </a-->
+             </div>
+             <!--div id="data-advanced-configuration" >
+                 <div class="metadata-common-fields">
+                     <div id="default_field" class="create_form-group">
+                         <label for="socialdb_property_default_value">{{_ 'property.property-default-value-label'}}</label>
+                         <input type="text" class="form-control" id="socialdb_property_data_default_value" name="socialdb_property_default_value" placeholder="{{_ 'property.property-default-value-label'}}"><br>
+                     </div>
+                     <div class="create_form-group">
+                         <label for="socialdb_property_help">{{_ 'property.property-text-helper-label'}}</label>
+                         <input type="text" class="form-control" id="socialdb_property_data_help" name="socialdb_property_data_help" />
+                     </div>
+                     <br>
+                     <div class="form-group" style="display: inline-block;">
+                         <label for="property_term_required" style="margin-right: 10px;" >{{_ 'property.property-elements-quantity-label'}} : </label>
+                         &nbsp;<input type="radio" name="socialdb_property_data_cardinality" id="socialdb_property_data_cardinality_1" checked="checked"  value="1">&nbsp;{{_ 'property.property-elements-quantity-unic-value'}}
+                         &nbsp;<input type="radio" name="socialdb_property_data_cardinality" id="socialdb_property_data_cardinality_n" value="n">&nbsp;{{_ 'property.property-elements-multiple-value'}}
+                     </div>
+                     <div class="form-group" style="display: inline-block;">
+                         <label for="property_term_required" style="margin-right: 10px;" >{{_ 'property.property-visualization-label'}} : </label>
+                         &nbsp;<input type="radio" name="socialdb_event_property_visualization" id="socialdb_property_data_visualization_public" checked="checked"  value="public">&nbsp;{{_ 'property.property-visualization-public'}}
+                         &nbsp;<input type="radio" name="socialdb_event_property_visualization" id="socialdb_property_data_visualization_restrict" value="restrict">&nbsp;{{_ 'property.property-visualization-private'}}
+                     </div>
+                     <div id="required_field" class="form-group" >
+                         <input type="checkbox" name="property_data_required" id="property_data_required_true"  value="true">&nbsp;<b>{{_ 'property.property-required'}}</b>
+                     </div>
+
+                     <input type="hidden" name="property_data_widget" value="data" class="property_data_widget">
+                     <input type="hidden" name="orientation" value="left-column">
+
+                     <hr class="hr-style">
+                     <button type="submit">{{_ 'submit'}}</button>
+                 </div>
+             </div-->
+             <input type="hidden" id="is_property_fixed" name="is_property_fixed" value="false">
+             <input type="hidden" name="property_metadata_type" value="text" id="property_metadata_type">
+             <input type="hidden" id="property_data_collection_id" name="collection_id" value="">
+             <input type="hidden" id="property_data_id" name="property_data_id" value="">
+             <!--button class="btn btn-success pull-right" type="submit">{{_ 'submit'}}</button>
+             <button class="btn btn-default pull-left js-list-properties" type="button">{{_ 'cancel'}}</button-->
+          </form>
+    </div> 
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left close-modal" data-dismiss="modal">{{_ 'cancel'}}</button>
+        <button type="submit" class="btn btn-primary action-continue" form="submit_form_property_data">
+           {{_ 'submit'}}
+        </button>
+    </div>     
+</template>

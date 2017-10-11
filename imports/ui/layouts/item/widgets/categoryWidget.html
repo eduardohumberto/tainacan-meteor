@@ -1,0 +1,25 @@
+<template name="categoryWidget">
+    <div id="meta-item-"  class="form-group">
+        <h2>
+            {{property.name}}
+        </h2>
+        <div>
+            {{#each index in cardinality}}
+               {{#if isInput 'selectbox'}}
+                    {{>selectboxInput (getArgs index)}}
+               {{/if}}   
+            {{/each}}
+            {{#if isMultipleValue index}}
+                {{#if showValue}} 
+                    
+                {{else}}
+                <button type="button"
+                        style="margin-top: 50px;"
+                        class="btn btn-primary btn-lg btn-xs btn-block add-field">
+                    <span class="glyphicon glyphicon-plus"></span>{{_ 'categoryWidget.add-field'}}
+                </button>
+                {{/if}}
+            {{/if}}
+        </div>
+    </div>
+</template>

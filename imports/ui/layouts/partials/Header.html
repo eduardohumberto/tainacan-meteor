@@ -1,0 +1,135 @@
+<template name="Header">
+  <nav  class="navbar navbar-default header-navbar"
+  style="background-color: {{#if isActivePath '/' }} none {{else}} black {{/if }} ;">
+            <div class="container-fluid">
+
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+
+                <div class="navbar-header logo-container">
+                  <a class='navbar-brand logo-tainacan' href='/'>
+                    <img src="/Tainacan_pb.svg" width="150px"/>
+                  </a>
+                </div>
+
+                <!-- TAINACAN: container responsavel em listar os links para as acoes no repositorio -->
+                <div class="user-actions collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <!-- TAINACAN: mostra acoes do usuario, cadastro, login, edital perfil suas colecoes -->
+                    <ul class="nav navbar-nav navbar-right admin-configs">
+                          {{#if currentUser}}
+
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <div style="display:inline-block; margin-left: 5px;">
+                                        {{_ 'collections'}}
+                                        <span class="caret" style="font-size: 14px"></span>
+                                    </div>
+                                </a>
+                                <ul  class="dropdown-menu" role="menu" >
+                                    <li>
+                                        <a href="{{pathFor 'list-collections'}}">
+                                            {{_ 'all-colections'}}
+                                        </a>
+                                    </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                          <!--a href="{{pathFor 'create-collection'}}" class="create-collection">
+                                                {{_ 'header.create-collection'}}
+                                            </a-->
+                                          <a href="#modalCreateCollection" class="js-open-modal">{{_ 'header.create-collection'}}</a>
+                                        </li>
+                                </ul>
+                            </li>
+                            <!--li class="manual">
+                                <a >
+                                  Click to download the manual
+                                </a>
+                            </li-->
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                   {{getCurrentUserEmail}}<span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu" id="tainacan-menu">
+                                    <!--li>
+                                        <a href="#" >Perfil</a>
+                                    </li-->
+                                    <li>
+                                        <a style="cursor: pointer;" href="{{pathFor 'categories-management-page'}}" >
+                                            Minhas categorias
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="logout">Logout </a>
+                                    </li>
+
+                                        <li class="divider"></li>
+                                        <!-- TAINACAN: mostra acoes do repositorio dentro da tag <div id="configuration"> localizado no arquivo single.php -->
+                                        <li class="admin-config-menu">
+                                            <a class="config" href="javascript:void(0)">Repository settings <span class="caret"></span> </a>
+                                            <ul class="admin-config-submenu" aria-expanded="false">
+                                                <!--li><a onclick="" href="#"><span class="glyphicon glyphicon-wrench"></span>Configuration</a></li>
+                                                <li><a onclick="" href="#"><span class="glyphicon glyphicon-list-alt"></span> Metadata</a></li>
+                                                <li><a href="<?php echo get_bloginfo('url') ?>/wp-admin/users.php"> <span class="glyphicon glyphicon-user"></span> Users </a></li>
+                                                <li ><a  href="#"><span class="glyphicon glyphicon-globe"></span> API keys</a></li>
+                                                <li><a  href="#"><span class="glyphicon glyphicon-duplicate"></span>Licenses</a></li>
+                                                <li><a   href="#"> <span class="glyphicon glyphicon-flash"></span>&nbsp;Events&nbsp;&nbsp;<span id="notification_events_repository" style="background-color:red;color:white;font-size:13px;"></span></a></li>
+                                                <li><a   href="#"><span  class="glyphicon glyphicon-envelope"></span> Welcome email</a></li-->
+                                                <li><a href="{{pathFor 'toolsPage'}}"><span  class="glyphicon glyphicon-tasks"></span> Tools</a></li>
+                                                <!--li><a  onmouseover="" href="#"><span  class="glyphicon glyphicon-import"></span> Import </a></li>
+                                                <li><a  onmouseover="" href="#"><span  class="glyphicon glyphicon-export"></span>Export</a></li>
+                                                <li> <a class="repository-statistics" href="#" onmouseover="">
+                                                        <span class="glyphicon glyphicon-globe"></span>Statistics
+                                                    </a>
+                                                </li-->
+                                            </ul>
+                                        </li>
+                                </ul>
+                            </li>
+                            {{else}}
+                            <li>
+                                <button class="btn btn-default pull-right login"  href="/entrar">
+                                    &nbsp;Login
+                                </button>
+                            </li>
+                            <li>
+                                <button class="btn btn-default pull-right register"  href="/registrar">
+                                    &nbsp;Register
+                                </button>
+                            </li>
+                            {{/if}}
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+        <!-- TAINACAN: modal padrao bootstrap aberto via javascript pelo seu id, formulario inicial para criacao de colecao -->
+        <div class="modal fade" id="modalCreateCollection" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                  <div class="modal-content new-collection">
+                    <form id="form_new_collection">
+                        <div id="form_new_collection">
+                            <div class="modal-header">
+                                 <h4>{{_ 'collection.create-collection.title-text'}}</h4>
+                            </div>    
+                            <div class="modal-body" style="padding: 0 15px 0 15px;">
+                                <div class="form-group">
+                                    <label for="collection_name">{{_ 'collection.create-collection.label-text'}}</label>
+                                    <input type="text"
+                                           required="required"
+                                           class="form-control"
+                                           name="collection_name" id="collection_name"
+                                           placeholder="{{_ 'collection.create-collection.placeholder-text'}}">
+                                </div>
+                            </div>    
+                            <div class="modal-footer" style="border-top: 0">
+                                <button type="button" data-dismiss="modal" class="btn btn-default pull-left">{{_ 'collection.create-collection.cancel'}}</button>
+                                <button type="submit" class="btn btn-success">{{_ 'collection.create-collection.submit-text'}}</button>
+                            </div>    
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</template>

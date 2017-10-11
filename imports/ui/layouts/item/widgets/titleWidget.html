@@ -1,0 +1,18 @@
+<template name="titleWidget">
+    <div id="meta-item-"  class="form-group">
+        <h2>
+            {{property.name}}
+        </h2>
+        <div>
+            {{#if showValue}}   
+                <p>{{item.title}}</p>
+            {{else}} 
+                <input class="form-control js-save-title"
+                       type="text"
+                       value="{{item.title}}"
+                       name="item-name"
+                       placeholder="{{_ 'titleWidget.item-name'}}">
+            {{/if}}
+        </div>
+    </div>     
+</template>  

@@ -1,0 +1,60 @@
+<template name="viewItem">
+    {{#if Template.subscriptionsReady}}
+    {{> collectionHeader}}
+    <div id="configuration" style="background-color: #f1f2f2">
+            <div class="row" style="display:none;background-color: #f1f2f2">
+                <div style="margin-left:1%;padding-left:15px;min-height:500px;padding-top:80px;"
+                     class="col-md-12 menu_left_loader">
+                    <center>
+                        <h4>{{_ 'form-item.loading'}}</h4>
+                    </center>
+                </div>
+            </div>
+            <div class="col-md-12 menu_left">
+                <h4>
+                    {{#if isEditting}} 
+                    <span class="title-item-edit">{{_ 'form-item.edit-item-title'}}</span>
+                    {{else}}
+                    <span class="title-item-add">{{_ 'form-item.add-item-title'}}</span>
+                    {{/if}}
+                    <button onclick="history.back()" 
+                            type="button"
+                            class="btn btn-default pull-right">{{_ 'form-item.back-to-collection'}} 
+                    </button>
+                    <br>
+                    <small id="draft-text"></small>
+                </h4>
+                <hr>
+                <ul id="tabs_item" class="nav nav-tabs" style="background: white">
+                    {{#each tab in listTabs}}
+                    <li  role="presentation" class="active">
+                        <a id="click-tab-{{ tab.id}}" href="#tab-{{ tab.id}}" aria-controls="tab-{{ tab.id}}" role="tab" data-toggle="tab">
+                            <span  id="{{ tab.id}}-tab-title">
+                                {{ tab.name}}
+                            </span>
+                        </a>
+                    </li>
+                    {{/each}} 
+                </ul>
+                <div id="tab-content-metadata" class="tab-content" style="background: white;">
+                    {{#each tab in listTabs}}
+                    <div id="tab-{{ tab.id}}"  class="tab-pane fade in active" style="background: white;margin-bottom: 15px;">
+                        <div class="expand-all-{{ tab.id}}"  >   
+                            <a class="expand-all-link" href="javascript:void(0)">
+                                {{_ 'form-item.expand-accordeon'}}&nbsp;&nbsp;<span class="caret"></span></a>
+                        </div>
+                        <hr>
+                        <div id="accordeon-{{ tab.id}}" class="multiple-items-accordion" style="margin-top:-20px;">
+                            {{#each property in listProperties tab.id}}
+                                {{#with property=property item=getItem showValue=true}}
+                                        {{> Template.dynamic template=getWidget}}
+                                {{/with}}         
+                            {{/each}}   
+                        </div>
+                    </div>
+                    {{/each}} 
+                </div>    
+            </div>  
+    </div>
+    {{/if}}
+</template>    

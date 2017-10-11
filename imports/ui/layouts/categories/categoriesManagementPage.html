@@ -1,0 +1,114 @@
+<template name="categoriesManagementPage">
+    <div id="configuration" style="margin-top: 50px;">
+
+        <div id="categories_title" class="row" > 
+          <div class="col-md-12 tainacan-topo-categoria">
+              <h3>{{_ 'Categories.title'}}
+                  <button onclick="backToMainPage();" class="btn btn-default pull-right">{{_ 'Categories.back'}}</button>
+              </h3> 
+              <hr>  
+          </div>
+        </div>
+        <div class="categories_menu">
+            <div class="col-md-4">
+                <div id="categories_dynatree" style='height: 400px;overflow: scroll;' >
+                </div>
+            </div>
+           <div class="col-md-6">
+              {{>formCategory getArgs}}
+          </div>    
+        </div> 
+        <ul id="myMenu" class="contextMenu" style="display:none;">
+            <li class="add"><a href="#add">{{_ 'add'}}</a></li>  
+            <li class="edit"><a href="#edit">{{_ 'edit'}}</a></li>
+            <li class="delete"><a href="#delete">{{_ 'remove'}}</a></li>
+            <li class="set_parent"><a href="#set_parent">{{_ 'Categories.set-as-parent'}}</a></li>
+            <!--li class="import_taxonomy"><a href="#import_taxonomy"><?php _e('Import taxonomy', 'tainacan'); ?></a></li>
+            <li class="export_taxonomy"><a href="#export_taxonomy"><?php _e('Export taxonomy', 'tainacan'); ?></a></li>
+             <li class="quit separator"><a href="#quit">Quit</a></li> -->
+        </ul> 
+        <!-- modal exluir -->
+        <div class="modal fade" id="modalExcluirCategoriaUnique" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form  id="submit_delete_category">   
+                        <input type="hidden" id="category_delete_id" name="category_delete_id" value="">
+                        <input type="hidden" id="operation_category_delete" name="operation" value="delete">
+                        <input type="hidden" id="delete_collection_id" name="collection_id" value="<?php echo $collection_id; ?>">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-trash"></span>&nbsp;{{_ 'Categories.remove-category-title'}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            {{_ 'Categories.confirm-the-exlcusion-of'}}&nbsp;<span id="delete_category_name"></span>?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'close'}}</button>
+                            <button type="submit" class="btn btn-primary">{{_ 'submit'}}</button>
+                        </div>
+                    </form>  
+                </div>
+            </div>
+        </div>
+        <!-- modal import taxonomy -->
+        <div class="modal fade" id="modal_import_taxonomy"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog modal-lg">
+                <form method="post" id="import_taxonomy_submit"
+                      enctype="multipart/form-data">
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4> {{_ 'Categories.import-taxonomy'}}<span id='import_taxonomy_title'></span></h4>
+                        </div>    
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label for="input_file_import" >{{_ 'Categories.import-taxonomy-label'}}</label>
+                                    <input required="required" id="input_file_import" class="btn btn-default" type="file" name="xml"/>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div> 
+                        <input name="operation" class="btn btn-default" type="hidden" value="insert_hierarchy"/>
+                        <input name="root_category_id" id='import_taxonomy_root_category_id' type="hidden" value=""/>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'close'}}</button>
+                            <button type="submit" class="btn btn-primary">{{_ 'submit'}}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- modal export taxonomy -->
+        <div class="modal fade" id="modal_export_taxonomy"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog modal-lg">
+                <form onsubmit="hideModalExportTaxonomy()" method="post" id="export_taxonomy_submit" action="<?php echo get_template_directory_uri() ?>/controllers/category/category_controller.php">
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4> {{_ 'Categories.download-taxonomy'}}&nbsp;<span id='export_taxonomy_title'></span></h4>
+                        </div>    
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <center><h4><strong>{{_ 'Categories.confirm-download-taxonomy'}}<span id='export_taxonomy_content'></span></strong></h4></center>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div> 
+                        <input name="operation" class="btn btn-default" type="hidden" value="export_hierarchy"/>
+                        <input name="root_category_id" id='export_taxonomy_root_category_id' type="hidden" value=""/>
+                        <input name="collection_id" class="btn btn-default" type="hidden" value="" id="collection_id_hierarchy_export"/>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'close'}}</button>
+                            <button type="submit" class="btn btn-primary">{{_ 'submit'}}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+ 

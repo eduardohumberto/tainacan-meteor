@@ -1,0 +1,27 @@
+<template name="collectionListItem">
+    {{#if Template.subscriptionsReady}}
+    <div id="collection-view-mode">
+        <div id='cards-viewMode' class='col-md-12 no-padding list-mode-set'>
+            {{#each item in listItems}}
+            {{> Template.dynamic template=getViewMode data=item }}
+            {{/each}}    
+        </div>
+    </div>  
+    <br>
+    <span><h5><b>Total de itens encontrados: {{getPublishedCount 'itemsCount'}}</b></h5></span>
+    <nav>
+        <ul class="pager">
+            <li class="{{prevPageClass}}">
+                <a id="prevPage" href="{{prevPage}}">
+                    <span aria-hidden="true">&larr;</span> Previous
+                </a>
+            </li>
+            <li class="{{nextPageClass}}">
+                <a id="nextPage" href="{{nextPage}}">
+                    Next <span aria-hidden="true">&rarr;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>  
+    {{/if}}
+</template>    

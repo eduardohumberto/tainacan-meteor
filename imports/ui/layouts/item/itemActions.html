@@ -1,0 +1,16 @@
+<template name="itemActions">
+    <ul class="nav navbar-bar navbar-right item-menu-container">
+        <li class="dropdown open_item_actions">
+            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <span class="glyphicon glyphicon-cog "></span>
+            </a>
+            <ul class="dropdown-menu pull-right dropdown-show new-item-menu" role="menu" id="item-menu-options">
+                <li>
+                    <a href="{{getUrlEditItem}}" class="js-edit-item">
+                       {{_ 'itemActions.editItem'}}
+                   </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</template>

@@ -1,0 +1,23 @@
+<template name="textWidget">
+    <div id="meta-item-"  class="form-group">
+        <h2>
+            {{property.name}}
+        </h2>
+        <div>
+            {{#each index in cardinality}}
+                {{>textInput (getArgs index)}}
+            {{/each}}
+            {{#if isMultipleValue index}}
+                {{#if showValue}} 
+                    
+                {{else}}
+                <button type="button"
+                        style="margin-top: 50px;"
+                        class="btn btn-primary btn-lg btn-xs btn-block add-field">
+                    <span class="glyphicon glyphicon-plus"></span>{{_ 'textWidget.add-field'}}
+                </button>
+                {{/if}}
+            {{/if}}
+        </div>
+    </div>
+</template>

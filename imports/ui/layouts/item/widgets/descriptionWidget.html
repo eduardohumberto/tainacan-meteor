@@ -1,0 +1,16 @@
+<template name="descriptionWidget">
+     <div id="meta-item-"  class="form-group">
+         <h2>
+             {{property.name}}
+         </h2>
+         <div>
+            {{#if showValue}}   
+                <p>{{item.desc}}</p>
+            {{else}}
+             <textarea class="form-control js-save-desc"  
+                       name="item-desc" 
+                       placeholder="{{_ 'titleWidget.item-content'}}">{{item.desc}}</textarea>
+            {{/if}}
+         </div>
+     </div>     
+</template>  
